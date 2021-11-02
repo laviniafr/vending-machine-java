@@ -21,7 +21,7 @@ public class InventoryDAOFileImpl implements InventoryDAO {
 	@Override
 	public List<Item> getItems() throws InventoryPersistenceException {
 		this.loadDataFromFile();
-		return new ArrayList<Item>(items.values());
+		return new ArrayList<>(items.values());
 	}
 
 	@Override
@@ -70,9 +70,7 @@ public class InventoryDAOFileImpl implements InventoryDAO {
 	}
 
 	private String getFormat(Item item) {
-		StringBuffer stringBuffer = new StringBuffer();
-		stringBuffer.append(item.getID() + "," + item.getName() + "," + item.getQuantity() + "," + item.getCost());
-		return stringBuffer.toString();
+		return item.getID() + "," + item.getName() + "," + item.getQuantity() + "," + item.getCost();
 	}
 
 	private void writeDataToFile() throws InventoryPersistenceException {
