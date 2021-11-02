@@ -28,7 +28,7 @@ public class InventoryController {
 			while (true) {
 				try {
 					inventoryView.displaySum(sum);
-					int userChoice = inventoryView.getUserChoice(this.inventoryService.getItems().size());
+					int userChoice = inventoryView.getUserChoice(this.inventoryService.getItems(false).size());
 					if (userChoice == 0) {
 						break;
 					} else {
@@ -50,7 +50,7 @@ public class InventoryController {
 
 
 	private void listItems() throws InventoryPersistenceException {
-		List<Item> items = inventoryService.getItems();
+		List<Item> items = inventoryService.getItems(true);
 		inventoryView.displayItems(items);
 	}
 

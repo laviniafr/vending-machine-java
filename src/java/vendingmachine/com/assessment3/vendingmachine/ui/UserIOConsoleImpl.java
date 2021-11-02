@@ -41,7 +41,7 @@ public class UserIOConsoleImpl implements UserIO {
 				value = new BigDecimal(input);
 				isValid = true;
 			} catch (NumberFormatException e) {
-				this.printMessage("Not a valid number.");
+				this.printMessage("=== Not a valid number. ===");
 				this.printMessage(message);
 			}
 		}

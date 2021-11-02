@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface InventoryServiceLayer {
 
-	List<Item> getItems() throws InventoryPersistenceException;
+	List<Item> getItems(boolean display) throws InventoryPersistenceException;
 	Item getItem(int ID) throws InventoryPersistenceException;
 	void buyItem(int ID, int quantityToBuy, BigDecimal funds) throws InsufficentFundsException, NoItemInventoryException, InventoryPersistenceException;
 
