@@ -53,6 +53,6 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return this.ID + "\t" + this.name + "\t" + this.cost + "\t" + this.quantity;
+		return this.ID + "\t" + this.name + "\t\t" + this.cost + "\t\t\t" + this.quantity;
 	}
 }

@@ -10,6 +10,8 @@ public interface UserIO {
 	 */
 	void printMessage(String message);
 
+	void printFormattedMessage(String string1, String string2, String string3, String string4);
+
 	/**
 	 * Method that repeatedly prompts a user to enter a number until reaching a valid input.
 	 *

@@ -1,5 +1,6 @@
 package com.assessment3.vendingmachine.controller;
 
+import com.assessment3.vendingmachine.dto.Change;
 import com.assessment3.vendingmachine.dto.Item;
 import com.assessment3.vendingmachine.service.*;
 import com.assessment3.vendingmachine.ui.InventoryView;
@@ -11,10 +12,12 @@ public class InventoryController {
 
 	private final InventoryView inventoryView;
 	private final InventoryServiceLayer inventoryService;
+	private final Change change;
 
 	public InventoryController(InventoryServiceLayer inventoryService, InventoryView inventoryView) {
 		this.inventoryService = inventoryService;
 		this.inventoryView = inventoryView;
+		this.change = new Change();
 	}
 
 	public void run() throws InventoryPersistenceException, NoItemInventoryException, InsufficentFundsException {
@@ -30,17 +33,21 @@ public class InventoryController {
 						break;
 					} else {
 						inventoryService.buyItem(userChoice, 1, sum);
-//						sum = sum.subtract(inventoryService.getItem(userChoice).getCost());
+						inventoryView.displayBoughtItem(inventoryService.getItem(userChoice).getName());
+						sum = sum.subtract(inventoryService.getItem(userChoice).getCost());
+						inventoryView.displayCoins(this.change.getChange(sum));
+						this.listItems();
 					}
-				} catch (NoItemInventoryException | InsufficentFundsException e) {
+				} catch (NoItemInventoryException | InsufficentFundsException |InventoryPersistenceException e) {
 					inventoryView.displayErrorMessage(e);
 				}
 			}
 		}
-
 		inventoryView.displayGoodbyeMessage();
 
 	}
+
+
 
 	private void listItems() throws InventoryPersistenceException {
 		List<Item> items = inventoryService.getItems();
