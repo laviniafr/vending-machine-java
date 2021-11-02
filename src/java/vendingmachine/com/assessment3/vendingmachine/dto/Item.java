@@ -13,6 +13,7 @@ public class Item {
 	}
 
 	public Item(int ID, String name, BigDecimal cost, int quantity) {
+		this.ID = ID;
 		this.name = name;
 		this.cost = cost;
 		this.quantity = quantity;
@@ -52,6 +53,6 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return this.ID + "\t" + this.name + "\t" + this.cost;
+		return this.ID + "\t" + this.name + "\t" + this.cost + "\t" + this.quantity;
 	}
 }

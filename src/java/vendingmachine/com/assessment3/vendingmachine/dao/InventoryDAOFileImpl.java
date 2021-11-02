@@ -1,7 +1,9 @@
 package com.assessment3.vendingmachine.dao;
 
 import com.assessment3.vendingmachine.dto.Item;
+import com.assessment3.vendingmachine.service.InsufficentFundsException;
 import com.assessment3.vendingmachine.service.InventoryPersistenceException;
+import com.assessment3.vendingmachine.service.NoItemInventoryException;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -31,10 +33,20 @@ public class InventoryDAOFileImpl implements InventoryDAO {
 	}
 
 	@Override
-	public void buyItem(int ID, int quantity, BigDecimal funds) throws InventoryPersistenceException {
+	public void buyItem(int ID, int quantity, BigDecimal funds) throws InventoryPersistenceException, NoItemInventoryException, InsufficentFundsException {
 		this.loadDataFromFile();
 		Item itemToBuy = items.get(ID);
-		itemToBuy.setQuantity(itemToBuy.getQuantity() - quantity);
+		if (itemToBuy.getCost().compareTo(funds) > 0) {
+			throw new InsufficentFundsException("Insufficient funds to buy item.");
+		} else {
+			if (itemToBuy.getQuantity() > 0) {
+				itemToBuy.setQuantity(itemToBuy.getQuantity() - quantity);
+				writeDataToFile();
+			} else {
+				throw new NoItemInventoryException("The item is out of stock!");
+			}
+		}
+
 	}
 
 	private Item readItemFromText(String itemText) throws InventoryPersistenceException {
@@ -70,7 +82,7 @@ public class InventoryDAOFileImpl implements InventoryDAO {
 	}
 
 	private String getFormat(Item item) {
-		return item.getID() + "," + item.getName() + "," + item.getQuantity() + "," + item.getCost();
+		return item.getID() + "," + item.getName() + "," + item.getCost() + "," + item.getQuantity();
 	}
 
 	private void writeDataToFile() throws InventoryPersistenceException {
