@@ -12,7 +12,7 @@ public class InventoryController {
 	private final InventoryView inventoryView;
 	private final InventoryServiceLayer inventoryService;
 
-	public InventoryController(InventoryServiceLayer inventoryService, InventoryView inventoryView){
+	public InventoryController(InventoryServiceLayer inventoryService, InventoryView inventoryView) {
 		this.inventoryService = inventoryService;
 		this.inventoryView = inventoryView;
 	}
@@ -20,20 +20,24 @@ public class InventoryController {
 	public void run() throws InventoryPersistenceException, NoItemInventoryException, InsufficentFundsException {
 		inventoryView.displayWelcomeMessage();
 		this.listItems();
-		while(inventoryView.runningState()){
+		if (inventoryView.runningState()) {
 			BigDecimal sum = inventoryView.getWallet();
-			inventoryView.displaySum(sum);
-			try {
-				int userChoice = inventoryView.getUserChoice(this.inventoryService.getItems().size());
-				if (userChoice == 0) {
-					break;
-				} else {
-					inventoryService.buyItem(userChoice, 1, sum);
+			while (true) {
+				try {
+					inventoryView.displaySum(sum);
+					int userChoice = inventoryView.getUserChoice(this.inventoryService.getItems().size());
+					if (userChoice == 0) {
+						break;
+					} else {
+						inventoryService.buyItem(userChoice, 1, sum);
+//						sum = sum.subtract(inventoryService.getItem(userChoice).getCost());
+					}
+				} catch (NoItemInventoryException | InsufficentFundsException e) {
+					inventoryView.displayErrorMessage(e);
 				}
-			}catch (NoItemInventoryException | InsufficentFundsException e){
-				inventoryView.displayErrorMessage(e);
 			}
 		}
+
 		inventoryView.displayGoodbyeMessage();
 
 	}
@@ -42,7 +46,6 @@ public class InventoryController {
 		List<Item> items = inventoryService.getItems();
 		inventoryView.displayItems(items);
 	}
-
 
 
 }

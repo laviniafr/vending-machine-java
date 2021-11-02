@@ -17,7 +17,7 @@ public class InventoryView {
 	}
 
 	public void displaySum(BigDecimal sum) {
-		userIO.printMessage("Here is your current sum." + sum);
+		userIO.printMessage("=== Here is your current sum. ===\n £" + sum);
 	}
 
 	public int getUserChoice(int maxItems) {
