@@ -11,7 +11,7 @@ import java.util.List;
 public interface InventoryDAO {
 
 //	com.vendingmachine.dto.Item addItem(String name, BigInteger cost, int quantity);
-	List<Item> getItems() throws InventoryPersistenceException;
+	List<Item> getItems(boolean display) throws InventoryPersistenceException;
 	Item getItem(int ID) throws InventoryPersistenceException;
 	void buyItem(int ID, int quantity, BigDecimal funds) throws InventoryPersistenceException, NoItemInventoryException, InsufficentFundsException;
 //	void updateInventory(List<com.vendingmachine.dto.Item> items);

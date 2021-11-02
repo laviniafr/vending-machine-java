@@ -16,7 +16,7 @@ public class InventoryServiceLayerImpl implements InventoryServiceLayer {
 
 	@Override
 	public List<Item> getItems() throws InventoryPersistenceException {
-		return inventoryDAO.getItems();
+		return inventoryDAO.getItems(true);
 	}
 
 	@Override

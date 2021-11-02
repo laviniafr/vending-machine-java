@@ -11,19 +11,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class InventoryDAOFileImpl implements InventoryDAO {
-	Map<Integer, Item> items = new HashMap<>();
+	Map<Integer, Item> items ;
 	public static final String DELIMITER = ",";
 	public static final String CSV_FILE = "items.csv";
 
 	public InventoryDAOFileImpl() {
+		this.items = new HashMap<>();
 	}
 
 	@Override
-	public List<Item> getItems() throws InventoryPersistenceException {
+	public List<Item> getItems(boolean display) throws InventoryPersistenceException {
 		this.loadDataFromFile();
-		return new ArrayList<>(items.values());
+		List<Item> listToReturn;
+		if(display){
+			listToReturn = new ArrayList<>(items.values().stream().filter((i) ->i.getQuantity()>0).collect(Collectors.toList()));
+		}
+		else {
+			listToReturn = new ArrayList<>(items.values());
+		}
+		return listToReturn;
 	}
 
 	@Override
@@ -89,7 +98,7 @@ public class InventoryDAOFileImpl implements InventoryDAO {
 		try {
 			FileWriter fileWriter = new FileWriter(CSV_FILE);
 			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-			for (Item item : this.getItems()) {
+			for (Item item : this.getItems(false)) {
 				bufferedWriter.write(this.getFormat(item));
 				bufferedWriter.newLine();
 			}
