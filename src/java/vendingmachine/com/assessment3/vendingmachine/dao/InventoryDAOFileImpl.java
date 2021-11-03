@@ -50,7 +50,7 @@ public class InventoryDAOFileImpl implements InventoryDAO {
 		} else {
 			if (itemToBuy.getQuantity() > 0) {
 				itemToBuy.setQuantity(itemToBuy.getQuantity() - quantity);
-				writeDataToFile();
+				this.writeDataToFile();
 			} else {
 				throw new NoItemInventoryException("The item is out of stock!");
 			}
