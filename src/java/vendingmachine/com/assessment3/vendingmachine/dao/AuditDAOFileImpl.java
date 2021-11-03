@@ -24,7 +24,7 @@ public class AuditDAOFileImpl implements AuditDAO {
 			bufferedWriter.close();
 			fileWriter.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new InventoryPersistenceException("Couldn't log to file.");
 		}
 	}
 }
