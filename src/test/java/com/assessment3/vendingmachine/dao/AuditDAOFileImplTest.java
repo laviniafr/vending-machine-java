@@ -2,6 +2,7 @@ package com.assessment3.vendingmachine.dao;
 
 import com.assessment3.vendingmachine.service.InventoryPersistenceException;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -17,11 +18,11 @@ class AuditDAOFileImplTest {
 		auditDAO = new AuditDAOFileImpl();
 	}
 
-	@org.junit.jupiter.api.Test
+	@Test
 	void testConstructor() {
 		assertNotNull(this.auditDAO);
 	}
-	@org.junit.jupiter.api.Test
+	@Test
 	void testUpdateAudit() throws InventoryPersistenceException, IOException {
 		this.auditDAO.updateAudit("Testing...");
 		FileReader fr = new FileReader(AuditDAOFileImpl.AUDIT_FILE);
