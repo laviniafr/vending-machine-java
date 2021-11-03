@@ -72,7 +72,7 @@ public class UserIOConsoleImpl implements UserIO {
 					isValid = true;
 				}
 			} catch (IllegalArgumentException e) {
-				this.printMessage("=== Please choose a number between " + minChoice + " and " + maxChoice + ". ===");
+				this.printMessage("=== Please choose a number from the list. ===");
 				input = scanner.nextLine();
 			}
 		}

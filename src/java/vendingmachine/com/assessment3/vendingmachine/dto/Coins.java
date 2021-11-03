@@ -2,8 +2,27 @@ package com.assessment3.vendingmachine.dto;
 
 import java.math.BigDecimal;
 
+/**
+ * The enum Coins.
+ */
 public enum Coins {
-	QUARTER(25), DIME(10), NICKEL(5), PENNY(1);
+	/**
+	 * Quarter coins.
+	 */
+	QUARTER(25),
+	/**
+	 * Dime coins.
+	 */
+	DIME(10),
+	/**
+	 * Nickel coins.
+	 */
+	NICKEL(5),
+	/**
+	 * Penny coins.
+	 */
+	PENNY(1);
+
 
 	private final int coinValue;
 
@@ -11,6 +30,11 @@ public enum Coins {
 		this.coinValue = val;
 	}
 
+	/**
+	 * Gets the coin value as a BigDecimal object.
+	 *
+	 * @return the val
+	 */
 	public BigDecimal getVal() {
 		return new BigDecimal(coinValue);
 	}

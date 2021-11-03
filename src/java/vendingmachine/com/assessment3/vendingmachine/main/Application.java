@@ -10,8 +10,19 @@ import com.assessment3.vendingmachine.ui.InventoryView;
 import com.assessment3.vendingmachine.ui.UserIO;
 import com.assessment3.vendingmachine.ui.UserIOConsoleImpl;
 
+/**
+ * The type Application.
+ */
 public class Application {
-	public static void main(String[] args) throws InventoryPersistenceException, NoItemInventoryException, InsufficentFundsException {
+	/**
+	 * The entry point of application.
+	 *
+	 * @param args the input arguments
+	 * @throws InventoryPersistenceException - The inventory persistence exception.
+	 * @throws NoItemInventoryException      - The no item inventory exception.
+	 * @throws InsufficientFundsException    - The insufficient funds exception.
+	 */
+	public static void main(String[] args) throws InventoryPersistenceException, NoItemInventoryException, InsufficientFundsException {
 		UserIO userIO = new UserIOConsoleImpl();
 		InventoryView inventoryView = new InventoryView(userIO);
 		InventoryDAO inventoryDAO = new InventoryDAOFileImpl();

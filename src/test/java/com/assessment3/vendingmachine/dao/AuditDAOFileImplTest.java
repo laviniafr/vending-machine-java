@@ -10,18 +10,35 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Audit dao file impl test.
+ */
 class AuditDAOFileImplTest {
 
 	private AuditDAO auditDAO;
+
+	/**
+	 * Sets up.
+	 */
 	@BeforeEach
 	void setUp() {
 		auditDAO = new AuditDAOFileImpl();
 	}
 
+	/**
+	 * Test constructor.
+	 */
 	@Test
 	void testConstructor() {
 		assertNotNull(this.auditDAO);
 	}
+
+	/**
+	 * Test update audit by checking that a specific message is written to the file.
+	 *
+	 * @throws InventoryPersistenceException the inventory persistence exception
+	 * @throws IOException                   the io exception
+	 */
 	@Test
 	void testUpdateAudit() throws InventoryPersistenceException, IOException {
 		this.auditDAO.updateAudit("Testing...");
