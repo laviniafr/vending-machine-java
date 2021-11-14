@@ -40,7 +40,8 @@ public class InventoryDAOFileImpl implements InventoryDAO {
 	/**
 	 * Method that gets the items from file and returns a list of type Item.
 	 * @param display - Parameter that decides whether the method is used for displaying the items to the user or
-	 *                for other purposes.
+	 *                for other purposes. If the method is used for display, a lambda stream is applied to sort out
+	 *                the items that are out of stock.
 	 * @return - The Item list.
 	 * @throws InventoryPersistenceException - The inventory persistence exception.
 	 */

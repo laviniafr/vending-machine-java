@@ -9,6 +9,8 @@ import com.assessment3.vendingmachine.service.*;
 import com.assessment3.vendingmachine.ui.InventoryView;
 import com.assessment3.vendingmachine.ui.UserIO;
 import com.assessment3.vendingmachine.ui.UserIOConsoleImpl;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * The type Application.
@@ -23,12 +25,9 @@ public class Application {
 	 * @throws InsufficientFundsException    - The insufficient funds exception.
 	 */
 	public static void main(String[] args) throws InventoryPersistenceException, NoItemInventoryException, InsufficientFundsException {
-		UserIO userIO = new UserIOConsoleImpl();
-		InventoryView inventoryView = new InventoryView(userIO);
-		InventoryDAO inventoryDAO = new InventoryDAOFileImpl();
-		AuditDAO auditDAO = new AuditDAOFileImpl();
-		InventoryServiceLayer inventoryServiceLayer = new InventoryServiceLayerImpl(inventoryDAO,auditDAO);
-		InventoryController inventoryController = new InventoryController(inventoryServiceLayer, inventoryView);
-		inventoryController.run();
+
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		InventoryController controller = context.getBean("inventoryController", InventoryController.class);
+		controller.run();
 	}
 }
