@@ -15,7 +15,13 @@
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
 
-    <bean id="inventoryDAO" class="com.assessment3.vendingmachine.dao.InventoryDAOFileImpl" />
-    <bean id="auditDAO" class="com.assessment3.vendingmachine.dao.AuditDAOFileImpl"/>
+<!--    <bean id="inventoryDAO" class="com.dao.InventoryDAOFileImpl" />-->
+    <bean id="inventoryDAOStub" class = "com.dao.InventoryDAOStubImpl"/>
+    <bean id="auditDAO" class="com.dao.AuditDAOFileImpl"/>
+
+    <bean id="serviceLayer" class="com.service.InventoryServiceLayerImpl">
+        <constructor-arg ref="inventoryDAOStub"/>
+        <constructor-arg ref="auditDAO"/>
+    </bean>
 
 </beans>

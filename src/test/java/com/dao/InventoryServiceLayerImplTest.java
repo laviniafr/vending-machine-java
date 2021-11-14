@@ -3,22 +3,28 @@ package com.dao;
 import com.dto.Item;
 import com.service.*;
 import org.junit.jupiter.api.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test class for the InventoryServiceLayer class using Spring DI.
+ */
 public class InventoryServiceLayerImplTest {
 
 	private final InventoryServiceLayer serviceLayer;
 	private final Item testItem;
 
 	public InventoryServiceLayerImplTest() {
-		InventoryDAO inventoryDAO = new InventoryDAOStubImpl();
-		AuditDAO auditDAO = new AuditDAOStubImpl();
-
-		serviceLayer = new InventoryServiceLayerImpl(inventoryDAO, auditDAO);
+//		InventoryDAO inventoryDAO = new InventoryDAOStubImpl();
+//		AuditDAO auditDAO = new AuditDAOStubImpl();
+//		serviceLayer = new InventoryServiceLayerImpl(inventoryDAO, auditDAO);
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		serviceLayer = context.getBean("serviceLayer", InventoryServiceLayer.class);
 		testItem = new Item(1,"Crisps", new BigDecimal("4.5"),3);
 	}
 
