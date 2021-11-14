@@ -7,11 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Assignment5_VendingMachineSpringXML" />
-        <module name="Assignment5_VendingMachineSpring" />
+        <module name="VendingMachineSpringXML" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Assignment3_VendingMachine" target="17" />
+      <module name="Assignment5_VendingMachineSpring" target="17" />
       <module name="Assignment5_VendingMachineSpringAnnotations" target="17" />
     </bytecodeTargetLevel>
   </component>
