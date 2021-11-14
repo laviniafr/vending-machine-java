@@ -92,6 +92,12 @@ public class InventoryServiceLayerImplTest {
 		assertEquals(items.get(0).getCost().compareTo(testItem.getCost()),0,"Item cost should be 4.5");
 	}
 
+	/**
+	 * Testing that the quantity of the item changes upon buying an item.
+	 * @throws NoItemInventoryException
+	 * @throws InventoryPersistenceException
+	 * @throws InsufficientFundsException
+	 */
 	@Test
 	public void testBuyItem() throws NoItemInventoryException, InventoryPersistenceException, InsufficientFundsException {
 		testItem.setQuantity(2);
