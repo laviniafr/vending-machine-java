@@ -16,30 +16,30 @@
        http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
 
     <!-- Bean entry that creates an instance of the UserIOConsoleImpl under the name of userIO.-->
-    <bean id="userIO" class="com.assessment3.vendingmachine.ui.UserIOConsoleImpl"/>
+    <bean id="userIO" class="com.ui.UserIOConsoleImpl"/>
 
     <!-- Bean entry that creates an instance of the InventoryView under the name of inventoryView. The constructor argument
     passes the userIO as a parameter.-->
-    <bean id="inventoryView" class="com.assessment3.vendingmachine.ui.InventoryView">
+    <bean id="inventoryView" class="com.ui.InventoryView">
         <constructor-arg ref="userIO"/>
     </bean>
 
     <!-- Bean entry that creates an instance of the InventoryDAOFileImpl under the name of inventoryDAO.-->
-    <bean id="inventoryDAO" class="com.assessment3.vendingmachine.dao.InventoryDAOFileImpl"/>
+    <bean id="inventoryDAO" class="com.dao.InventoryDAOFileImpl"/>
 
     <!-- Bean entry that creates an instance of the AuditDAOFileImpl under the name of inventoryDAO.-->
-    <bean id="auditDAO" class="com.assessment3.vendingmachine.dao.AuditDAOFileImpl"/>
+    <bean id="auditDAO" class="com.dao.AuditDAOFileImpl"/>
 
     <!-- Bean entry that creates an instance of the InventoryServiceLayerImpl under the name of inventoryServiceLayer.
     The constructor arguments passed through are inventoryDAO and auditDAO.-->
-    <bean id="inventoryServiceLayer" class="com.assessment3.vendingmachine.service.InventoryServiceLayerImpl">
+    <bean id="inventoryServiceLayer" class="com.service.InventoryServiceLayerImpl">
         <constructor-arg ref="inventoryDAO"/>
         <constructor-arg ref="auditDAO"/>
     </bean>
 
     <!-- Bean entry that creates an instance of the InventoryController under the name of inventoryController.
     The constructor arguments passed through are inventoryServiceLayer and inventoryView.-->
-    <bean id="inventoryController" class="com.assessment3.vendingmachine.controller.InventoryController">
+    <bean id="inventoryController" class="com.controller.InventoryController">
         <constructor-arg ref="inventoryServiceLayer"/>
         <constructor-arg ref="inventoryView"/>
     </bean>
