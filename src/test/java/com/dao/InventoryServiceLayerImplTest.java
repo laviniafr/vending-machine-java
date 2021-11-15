@@ -19,10 +19,10 @@ public class InventoryServiceLayerImplTest {
 	private final InventoryServiceLayer serviceLayer;
 	private final Item testItem;
 
+	/**
+	 * Constructor that gets the service layer through the application context XML beans.
+	 */
 	public InventoryServiceLayerImplTest() {
-//		InventoryDAO inventoryDAO = new InventoryDAOStubImpl();
-//		AuditDAO auditDAO = new AuditDAOStubImpl();
-//		serviceLayer = new InventoryServiceLayerImpl(inventoryDAO, auditDAO);
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		serviceLayer = context.getBean("serviceLayer", InventoryServiceLayer.class);
 		testItem = new Item(1,"Crisps", new BigDecimal("4.5"),3);
